@@ -22,7 +22,7 @@ function Employee() {
     }, []);
 
     const handleFirstChange = () => {
-        items.sort((a, b) => a > b ? 1 : -1)
+        items.sort()
     };
 
 
