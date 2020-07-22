@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 function Employee() {
 
     const [items, setItems] = useState([]);
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [age, setAge] = useState()
 
 
     useEffect(() => {
@@ -17,15 +20,23 @@ function Employee() {
             .then(
                 (result) => {
                     setItems(result.results);
+                   
                 },
             )
     }, []);
 
     const handleFirstChange = () => {
-        items.sort()
+        setFirstName(items.sort((a, b) => (a.name.first > b.name.first) ? 1 : -1))
     };
 
+    const handleLastChange = () => {
+        setLastName(items.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1))
+    };
+    const handleAgeChange = () => {
+        setAge(items.sort((a, b) => (a.dob.age > b.dob.age) ? 1 : -1))
+    };
 
+    console.log(items)
 
     return (
         <div className="container">
@@ -41,7 +52,7 @@ function Employee() {
                             First Name
                             </Button>{' '}
                         </th>
-                        <th><Button variant="secondary" size="lg" onClick={handleFirstChange} active block>
+                        <th><Button variant="secondary" size="lg" onClick={handleLastChange} active block>
                             Last Name
                             </Button>{' '}
                         </th>
@@ -53,7 +64,7 @@ function Employee() {
                             Gender
                             </Button>{' '}
                         </th>
-                        <th><Button variant="secondary" size="lg" onClick={handleFirstChange} active block>
+                        <th><Button variant="secondary" size="lg" onClick={handleAgeChange} active block>
                             Age
                             </Button>{' '
                         }</th>
