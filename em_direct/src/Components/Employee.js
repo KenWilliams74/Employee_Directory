@@ -11,7 +11,8 @@ function Employee() {
     const [items, setItems] = useState([]);
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const [age, setAge] = useState()
+    const [age, setAge] = useState();
+    const [gender, setGender] = useState();
 
 
     useEffect(() => {
@@ -36,7 +37,17 @@ function Employee() {
         setAge(items.sort((a, b) => (a.dob.age > b.dob.age) ? 1 : -1))
     };
 
-    console.log(items)
+    const handleMaleChange = () => {
+        const male = items.filter(gen => gen.gender === "male");
+        setItems(male)
+    };
+    const handleFemaleChange = () => {
+        const female = items.filter(gen => gen.gender === "female");
+        setItems(female)
+    };
+
+
+
 
     return (
         <div className="container">
@@ -49,23 +60,26 @@ function Employee() {
                             </Button>{' '}
                         </th>
                         <th><Button variant="secondary" size="lg" onClick={handleFirstChange} active block>
-                            First Name
+                            Sort by First Name
                             </Button>{' '}
                         </th>
                         <th><Button variant="secondary" size="lg" onClick={handleLastChange} active block>
-                            Last Name
+                            Sort by Last Name
                             </Button>{' '}
                         </th>
                         <th><Button variant="secondary" size="lg" onClick={handleFirstChange} active block>
                             Location
                             </Button>{' '}
                         </th>
-                        <th><Button variant="secondary" size="lg" onClick={handleFirstChange} active block>
-                            Gender
+                        <th><Button variant="secondary" size="sm" onClick={handleMaleChange} active block>
+                            Filter by Male
+                            </Button>{' '}
+                            <Button variant="secondary" size="sm" onClick={handleFemaleChange} active block>
+                            Filter by Female
                             </Button>{' '}
                         </th>
                         <th><Button variant="secondary" size="lg" onClick={handleAgeChange} active block>
-                            Age
+                            Sort by Age
                             </Button>{' '
                         }</th>
                     </tr>
